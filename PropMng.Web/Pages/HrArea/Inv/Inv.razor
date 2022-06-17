@@ -1,0 +1,77 @@
+﻿@page "/Hr/Inv"
+@if (PageDisplay == EnmPageDisplay.Main)
+{
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;">
+  <a class="navbar-brand" href="javascript:void(0)">
+      <span class="fa fa-file"></span>
+     Invoices
+  </a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navb">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        
+      </li>
+      <li class="nav-item">
+        
+      </li>
+      <li class="nav-item">
+       
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" @oninput="InputChanged">
+      <a class="btn btn-info my-2 my-sm-0"  @onclick="BtnRefreshClick"><span class="fa fa-search"></span> Search</a> &nbsp;
+      <a class="btn btn-success my-2 my-sm-0" @onclick="BtnNewClick"><span class="fa fa-edit"></span> New Item</a>
+    </form>
+  </div>
+</nav>
+  
+    <SpinLoader IsLoading="IsLoading">
+        <LoadingTemplate>
+            <div class="col-12 text-light" style=" height:100%; vertical-align:middle;">
+                <br />
+                <br />
+                <Pulse Center="true" Color="#007d71" Size="70px"></Pulse>
+            </div>
+        </LoadingTemplate>
+        <ContentTemplate>
+
+            @if (ItemsList == null || ItemsList.ItemsCount == 0)
+            {
+                <div class="alert alert-@(ItemsList == null ? "danger" : "warning")">
+                    <strong>
+                        @(ItemsList == null ? "AN ERROR OCCURED." : "NO DATA FOR DISPLAY")
+                    </strong>
+                </div>
+            }
+            else
+            {
+                <div>
+
+                    @{ var index = (f.PageNumber - 1) * f.PageSize;}
+                    @foreach (var item in ItemsList.Items)
+                    {
+                        index++;
+                        <InvItem Item="item" Index="index" OnDeleteItem="DeleteItem" OnEditItem="EditItem" />
+
+                    }
+
+                </div>
+
+
+            }
+
+            <CmpPager PageSize="f.PageSize" PageNumber="f.PageNumber" ItemsCount="ItemsList.ItemsCount" ChangePage="@(e => PagerChangePage(e))"></CmpPager>
+        </ContentTemplate>
+    </SpinLoader>
+}
+else if (PageDisplay == EnmPageDisplay.Editor)
+{
+    <InvEditor Item="Item" OnBack="Back" Url="@url" />
+}
+ 
+@*<CmpLogs @ref="cmpLogs"/>*@

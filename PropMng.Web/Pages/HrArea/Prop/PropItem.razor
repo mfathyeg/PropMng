@@ -1,0 +1,26 @@
+﻿<div class="card">
+    <div class="card-header text-light gdnc-bg-info-light">
+        <div class="row">
+            <div class="col-9">
+                <button class="btn btn-link " @onclick="EditItem">
+                    <h6>
+                        @($"{Item.CmName}")
+                    </h6>
+                </button>
+            </div>
+            <div class="col-3 text-light">
+               
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-sm">@Item.Code</div>
+            <div class="col-sm">  @Item.CrNum</div>
+              <a @onclick="DeleteItem" class="btn btn-danger text-light">
+                <i class="fa fa-trash"/>
+            </a>  
+          
+        </div> 
+    </div> 
+</div>

@@ -1,0 +1,54 @@
+﻿@page "/Login"
+@layout LoginLayout
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card px-5 py-5" id="form1">
+                <div class="form-data" v-if="!submitted">
+                    <div class="forms-inputs mb-4">
+                        <span>username</span>
+                        <input class="form-control gdnc-remove-arrows" type="number" @bind="loginModel.Username" autofocus placeholder="enter user name" />
+                        <div class="invalid-feedback">A valid email is required!</div>
+                    </div>
+                    <div class="forms-inputs mb-4">
+                        <span>Password</span>
+                        <input type="password" class="form-control " @bind="loginModel.Password" placeholder="Password" />
+                        <div class="invalid-feedback">
+                            Password must be 8 character!
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <SpinLoader IsLoading="IsLoading">
+                <LoadingTemplate>
+                    <button class="btn btn-primary btn-block" disabled>
+                        <span class="spinner-border spinner-border-sm"></span>
+                        SigningIn ...
+                    </button>
+                </LoadingTemplate>
+                <ContentTemplate>
+                    <button class="btn btn-primary btn-block" @onclick="ValidateUser">
+                        <i class="fa fa-sign-in"></i>
+                        Login
+                    </button>
+                </ContentTemplate>
+            </SpinLoader>
+                    </div>
+                </div>
+                <div class="success-data" v-else>
+                    <div class="text-center d-flex flex-column">
+                        @if (showMessage)
+            {
+                <div class="alert alert-warning">
+                    @ErrorMessage
+                </div>
+            }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+ 

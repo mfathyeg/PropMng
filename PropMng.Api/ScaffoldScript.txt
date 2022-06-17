@@ -1,0 +1,9 @@
+﻿Scaffold-DbContext "data source=.; initial catalog=PropsMngDb; integrated security=true;" microsoft.entityframeworkcore.sqlserver -outputdir data  -f
+ 
+private readonly  IConfiguration configuration;
+
+public MyGovDbContext( IConfiguration configuration)
+{
+    this.configuration = configuration;
+}
+optionsBuilder.UseSqlServer(configuration.GetConnectionString("MyGovDbConnectionString"));

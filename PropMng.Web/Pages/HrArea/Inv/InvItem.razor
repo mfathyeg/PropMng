@@ -1,0 +1,25 @@
+﻿<div class="card">
+    <div class="card-header text-light gdnc-bg-info-light">
+        <div class="row">
+            <div class="col-9">
+                <button class="btn btn-link " @onclick="EditItem">
+                    <h6>
+                        @($"{Item.PersonName}")
+                    </h6>
+                </button>
+            </div>
+            <div class="col-3 text-dark text-right">
+               @Item.Num
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-sm-5" title="Property Name">@($"{Item.UnitName}({Item.PropName})")</div>
+            <div class="col-sm-6" title="Moths">  @($"{Item.Months} Ms {Item.StartYear}-{Item.StartMonth} TO {Item.EndYear}-{Item.EndMonth}, {Item.MonthlyRent}/month, TOTAL AMOUNT:{Item.TotalAmountWithTax}")</div>
+              <a @onclick="DeleteItem" class="btn btn-danger text-light">
+                <i class="fa fa-trash"/>
+            </a>            
+        </div> 
+    </div> 
+</div>

@@ -1,0 +1,173 @@
+﻿<EditForm Model="Item" OnValidSubmit="SaveItem" class="form-horizontal">
+    <DataAnnotationsValidator />
+    @if (Item.Id==0)
+    {
+         <div class="form-group row">
+        <label class="control-label col-sm-2">Customer Name</label>
+        <div class="col-sm-8">
+           
+            <GdncInputSelect class="form-control" @bind-Value="Item.PersonId">
+                <option value="0">SELECT CUSTOMER NAME</option>
+                @foreach (var i in customers)
+                {
+                    <option value="@i.Id">@($"{i.Name} - {i.Details}")</option>
+                }
+            </GdncInputSelect>
+            <ValidationMessage For="@(()=>Item.PersonId)" />
+        </div>
+        <div class="col-sm-2">
+            AUTO GENERATED NUMBER
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-sm-2">Property Name</label>
+        <div class="col-sm-4">
+            <select class="form-control" @onchange="PropChanged">
+                <option value="0">SELECT PROPERTY NAME</option>
+                @foreach (var i in props)
+                {
+                    <option value="@i.Id">@($"{i.Name} - {i.Details}")</option>
+                }
+            </select>
+            <ValidationMessage For="@(()=>Item.PropId)" />
+        </div>
+        <label class="control-label col-sm-2">Property Name</label>
+        <div class="col-sm-4">
+            <select class="form-control" @onchange="UnitChanged">
+                <option value="0">SELECT UNIT NAME</option>
+                @foreach (var i in units)
+                {
+                    <option value="@i.Id">@($"{i.Name} - {i.Details}")</option>
+                }
+            </select>
+            <ValidationMessage For="@(()=>Item.UnitId)" />
+        </div>
+    </div>
+  
+
+    }
+    else
+    {
+         <div class="form-group row">
+        <label class="control-label col-sm-2">Customer Name</label>
+        <div class="col-sm-8">
+           <h6>@Item.PersonName</h6>
+        </div>
+        <div class="col-sm-2">
+            @Item.Num
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-sm-2">Property Name</label>
+        <div class="col-sm-4">
+           <h6>@Item.PropName</h6>
+        </div>
+        <label class="control-label col-sm-2">Property Name</label>
+        <div class="col-sm-4">
+          <h6>@Item.UnitName</h6>
+        </div>
+    </div>
+  
+    }
+    <div class="form-group row">
+        <label class="control-label col-sm-2">Start Date</label>
+        <div class="col-sm-2">
+            <GdncInputSelect class="form-control" @bind-Value="Item.StartYear">
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                <option value="2031">2031</option>
+                <option value="2032">2032</option>
+            </GdncInputSelect>
+            <ValidationMessage For="@(()=>Item.StartYear)" />
+        </div>
+        <div class="col-sm-2">
+            <GdncInputSelect class="form-control" @bind-Value="Item.StartMonth">
+                <option value="1">JAN 1</option>
+                <option value="2">FEB 2</option>
+                <option value="3">MAR 3</option>
+                <option value="4">MAY 4</option>
+                <option value="5">APRIL 5</option>
+                <option value="6">JUNE 6</option>
+                <option value="7">JULY 7</option>
+                <option value="8">AUG 8</option>
+                <option value="9">SEP 9</option>
+                <option value="10">OCT 10</option>
+                <option value="11">NOV 11</option>
+                <option value="12">DEC 12</option>
+            </GdncInputSelect>
+            <ValidationMessage For="@(()=>Item.StartMonth)" />
+        </div>
+        <label class="control-label col-sm-2">End Date</label>
+        <div class="col-sm-2">
+            <GdncInputSelect class="form-control" @bind-Value="Item.EndYear">
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                <option value="2031">2031</option>
+                <option value="2032">2032</option>
+            </GdncInputSelect>
+            <ValidationMessage For="@(()=>Item.EndYear)" />
+        </div>
+        <div class="col-sm-2">
+            <GdncInputSelect class="form-control" @bind-Value="Item.EndMonth">
+                <option value="1">JAN 1</option>
+                <option value="2">FEB 2</option>
+                <option value="3">MAR 3</option>
+                <option value="4">MAY 4</option>
+                <option value="5">APRIL 5</option>
+                <option value="6">JUNE 6</option>
+                <option value="7">JULY 7</option>
+                <option value="8">AUG 8</option>
+                <option value="9">SEP 9</option>
+                <option value="10">OCT 10</option>
+                <option value="11">NOV 11</option>
+                <option value="12">DEC 12</option>
+            </GdncInputSelect>
+            <ValidationMessage For="@(()=>Item.EndMonth)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="control-label col-sm-2">Total Moneths</label>
+        <div class="col-sm-4">
+            @($"{Item.Months} X Monthly Rent{Item.MonthlyRent}")
+        </div>
+        <label class="control-label col-sm-2">Total Amount</label>
+        <div class="col-sm-4">
+            @($"{Item.TotalAmountWithTax} ({Item.TotalAmount}+{(Item.TotalAmount*Item.Vat)})")
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="control-label col-sm-2">Details</label>
+        <div class="col-sm-10">
+            <InputTextArea class="form-control" @bind-Value="Item.Details" placeholder="Details" />
+            <ValidationMessage For="@(()=>Item.Details)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-sm-2">Utilties</label>
+        <div class="col-sm-10">
+            @Item.Utilities
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm text-left"> <a class="btn btn-secondary btn-lg" @onclick="CancelItem">Cancel and Back</a></div>
+        <div class="col-sm text-right">  <button type="submit" class="btn btn-info btn-lg">Save Item Data</button></div>
+    </div>
+</EditForm>
+

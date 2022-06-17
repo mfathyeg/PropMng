@@ -1,0 +1,45 @@
+﻿@inherits LayoutComponentBase
+@using Blazored.Toast.Configuration
+<CascadingValue Value="myProfile" Name="MyProfile">
+    <CascadingValue Value="userRole" Name="UserRole">
+        <div class="page">
+            <div class="sidebar">
+                <NavMenu />
+            </div>
+            <div class="main">
+                <div class="top-row px-4">
+                    <a href="#" target="_blank">About</a>
+                </div>
+                <BlazoredToasts Position="ToastPosition.BottomLeft"
+                                Timeout="5"
+                                IconType="IconType.FontAwesome"
+                                ErrorIcon="fa fa-thumbs-down"
+                                InfoIcon="fa fa-thumbs-up"
+                                SuccessIcon="fa fa-thumbs-up"
+                                WarningIcon="fa fa-thumbs-up" ShowProgressBar="true" />
+                <div class="content px-4">
+                    @Body
+                </div>
+            </div>
+        </div>
+    </CascadingValue>
+</CascadingValue>
+
+@*      @inherits LayoutComponentBase
+@using Blazored.Toast.Configuration
+
+<CascadingValue Value="myProfile" Name="MyProfile">
+    <CascadingValue Value="userPagePrivilege" Name="UserPagePrivilege">
+        <BlazoredToasts Position="ToastPosition.BottomLeft"
+                        Timeout="5"
+                        IconType="IconType.FontAwesome"
+                        ErrorIcon="fa fa-thumbs-down"
+                        InfoIcon="fa fa-thumbs-up"
+                        SuccessIcon="fa fa-thumbs-up"
+                        WarningIcon="fa fa-thumbs-up" ShowProgressBar="true" />
+        <main class="app-content">
+            @Body
+        </main>
+    </CascadingValue>
+</CascadingValue>
+*@

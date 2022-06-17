@@ -1,0 +1,25 @@
+﻿<div class="col-sm-6">
+    <div class="card">
+        <div class="card-header text-light gdnc-bg-info-light">
+            <div class="row">
+                <button class="btn btn-link " @onclick="EditItem">
+                    <h6>
+                        @($"{Item.Name}  {Item.Code}")
+                    </h6>
+                </button>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-sm" title="Property Name">@Item.PropName</div>
+                <div class="col-sm" title="Monthly Rent">  @Item.MonthlyRent</div>
+                <a @onclick="ViewInvoices" class="btn btn-info text-light">
+                    <i class="fa fa-file" />
+                </a>
+                  <a @onclick="DeleteItem" class="btn btn-danger text-light">
+                    <i class="fa fa-trash" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

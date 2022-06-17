@@ -1,0 +1,52 @@
+﻿<EditForm Model="Item" OnValidSubmit="SaveItem" class="form-horizontal">
+    <DataAnnotationsValidator />
+    <div class="form-group row">
+        <label class="control-label col-sm-2">Commercial Name</label>
+        <div class="col-sm-8">
+            <InputText class="form-control" @bind-Value="Item.Name" placeholder="Commercial Name" />
+            <ValidationMessage For="@(()=>Item.Name)" />
+        </div>
+         <div class="col-sm-2">
+             @(Item.Id==0?"code..":Item.Code)
+        </div>
+      
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-sm-2">Property Name</label>
+        <div class="col-sm-4">
+            <GdncInputSelect class="form-control" @bind-Value="Item.PropId">
+                <option value="0">SELECT PROPERTY NAME</option>
+                @foreach (var i in props)
+                {
+                    <option value="@i.Id">@($"{i.Name} - {i.Details}")</option>
+                }
+            </GdncInputSelect>
+            <ValidationMessage For="@(()=>Item.PropId)" />
+        </div>
+          <label class="control-label col-sm-2">Monthly Rent</label>
+        <div class="col-sm-4">
+            <InputNumber class="form-control" @bind-Value="Item.MonthlyRent" placeholder="Monthly Rent Amount" />
+            <ValidationMessage For="@(()=>Item.MonthlyRent)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-sm-2">Address</label>
+        <div class="col-sm-10">
+            <InputTextArea class="form-control" @bind-Value="Item.Address" placeholder="Address" />
+            <ValidationMessage For="@(()=>Item.Address)" />
+        </div>
+    </div>
+     <div class="form-group row">
+        <label class="control-label col-sm-2">Utilities</label>
+        <div class="col-sm-10">
+            <InputTextArea class="form-control" @bind-Value="Item.Utilities" placeholder="Utilities" />
+            <ValidationMessage For="@(()=>Item.Utilities)" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm text-left"> <a class="btn btn-secondary btn-lg" @onclick="CancelItem">Cancel and Back</a></div>
+        <div class="col-sm text-right">  <button type="submit" class="btn btn-info btn-lg">Save Item Data</button></div>
+    </div>
+</EditForm>
+

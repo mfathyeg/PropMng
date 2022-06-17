@@ -1,0 +1,55 @@
+﻿<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">Property Manager</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+        @if (UserRole.IsValid("admin"))
+        {
+              <li class="nav-item px-3">
+            <NavLink class="nav-link" href="Hr/Persons">
+                <span class="fa fa-users" aria-hidden="true"></span>&nbsp; Users
+            </NavLink>
+        </li>
+          <li class="nav-item px-3">
+            <NavLink class="nav-link" href="Hr/Prop">
+                <span class="fa fa-building" aria-hidden="true"></span>&nbsp; Properties
+            </NavLink>
+        </li>
+          <li class="nav-item px-3">
+            <NavLink class="nav-link" href="Hr/PropUnit">
+                <span class="fa fa-building" aria-hidden="true"></span>&nbsp; Units
+            </NavLink>
+        </li>
+        }
+         @if (UserRole.IsValid("admin", "accountant"))
+        {
+              
+          <li class="nav-item px-3">
+            <NavLink class="nav-link" href="Hr/Inv">
+                <span class="fa fa-file" aria-hidden="true"></span>&nbsp; Invoices
+            </NavLink>
+        </li>
+        }
+            
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

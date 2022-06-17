@@ -1,0 +1,18 @@
+﻿<div>
+    <ul class="pagination">
+
+        <li class="page-item @(PageNumber==1? "disabled":string.Empty)">
+            <a class="page-link gdnc-mouse-pointer" @onclick="@(()=>BtnPagerNUmberClick(1))">«</a>
+        </li>
+        @for (int i = StartIndex; i <= FinishIndex; i++)
+        {
+            var pageNumber = i;
+            <li class="page-item @(i==PageNumber?"active":string.Empty)">
+                <a class="page-link gdnc-mouse-pointer" @onclick="@(()=>BtnPagerNUmberClick(pageNumber))">@i</a>
+            </li>
+        }
+        <li class="page-item @(PageNumber==TotalPages? "disabled":string.Empty)">
+            <a class="page-link gdnc-mouse-pointer" @onclick="@(()=>BtnPagerNUmberClick(TotalPages))">»</a>
+        </li>
+    </ul>
+</div>
